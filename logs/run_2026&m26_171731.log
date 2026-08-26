@@ -1,0 +1,20 @@
+2026-08-26 17:17:33,250 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-08-26 17:17:33,250 | INFO | hr_assistant.tracing | LangSmith tracing is OFF (set LANGSMITH_TRACING=true in .env to enable)
+2026-08-26 17:17:33,259 | INFO | hr_assistant.pipeline | faiss collection already exists, reusing it
+2026-08-26 17:17:33,259 | INFO | hr_assistant.vector_stores | loading faiss index from 'data\faiss_index'
+2026-08-26 17:17:33,259 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-08-26 17:17:33,263 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-26 17:17:33,294 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-26 17:17:33,294 | INFO | faiss.loader | Loading faiss.
+2026-08-26 17:17:33,325 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-26 17:17:33,344 | INFO | hr_assistant.vector_stores | Creating retreival with top_k='3;
+2026-08-26 17:17:33,354 | INFO | hr_assistant.llm | chat model attached 'gemini-3.6-flash'
+2026-08-26 17:17:35,307 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-08-26 17:17:35,322 | INFO | hr_assistant.agents | HR AGENT READY
+2026-08-26 17:18:13,630 | INFO | hr_assistant.pipeline | User question: hi can u help me understanding the notice period 
+2026-08-26 17:18:16,323 | INFO | httpx | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-26 17:18:16,360 | INFO | hr_assistant.tools | search_hr_policy called with query: What is the notice period policy?
+2026-08-26 17:18:23,937 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-26 17:18:27,075 | INFO | httpx | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-26 17:18:27,075 | INFO | hr_assistant.pipeline | Final answer: [{'type': 'text', 'text': 'Here are the details regarding the notice period policy:\n\n* **Standard Notice Period:** If you wish to resign, the standard notice period is **30 days**.\n* **During Probation:** If you are still in your probation period (the first 3 months), the notice period is reduced to **15 days**.\n* **Notice Period Waiver & Final Settlement:** The company may choose to waive the notice period at its discretion. Full and final settlement is processed within **45 days** of your last working day.\n\nLet me know if you have any questions or need further clarification!', 'extras': {'signature': 'ErYECrMEARFNMg+ATKwHtBW8FSg7wVMmjKsF6bk09QNsc27rFqL8v+izC4PpBQnXS+thHKZIacGlIXEcWopNsxggqb1qIIiwqQ/9/YeEjYRDW6HzK9jADlUQlpbikoBskU9blgExFbWRQ0mHovEres5QlmCs1UyjVSwYgFkFaiSubZjuseuPGGAW49KrZwM653RR96WzSlb5n/59xyghBwFicXitDnd3j2BDKADrmsZovBLZyDZEmmbPCKId0un/Ral+/YxrSpF903bwFXaa3+S5bbvQdgjB3WbyrW9DGro6m06CLhL1MuFRsVh4WZE56oiCoUQz6qYEi7uRV+5iuxbCP0OmbwWbfKW6SjQJ/Lxls0mTa5i3eyrAOvkHka9DQCNMhWnYmAX76IkkGbhbCvaG9quJjNOyG4eqZNYst1GZDmmjcbWAc9xLwKZ2v7iRqxhOWd5etpmy8+IN6dtjXWpDEjg3CwAGWr1sNhzbb6A1V8q+cIjvVtFkGuiAIOcreq+qNUSvDpBkQ782CN167TaEL3B/Z1fQkreQKjEDVowz9Q09UJxTN1cgQVBdOi5l+qUeYiGzg+dibJNUtZMcATkAwNjch30FEtYOfrzU6nkBYaRpOtFoZQXGyItMqu4xUFo3zna8vN2Ha16/FvJ03Y5ijHLvmglvAM034gKFThotZHFiUE0IjfKQEP7k9NxXMuOhUZJo4eqbqw7Nmjlpk1LB5hPyRCG5y57aQTRHkKsYiJ5CfBDjcI0='}}]

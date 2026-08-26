@@ -18,14 +18,20 @@ from hr_assistant.vector_stores import (
     vector_store_exists,
 )
 
+from hr_assistant.tracing import check_langsmith_tracing
+
+from hr_assistant.logger import get_logger
+logger = get_logger(__name__)
 
 def build_vector_store_for_document(file_path: str = config.DATA_FILE_PATH):
     """Load + split + embed the document, 
     reusing saved index if we have one."""
     if vector_store_exists():
         print("Found an existing vector store on disk, connecting to it (fast, no re-embedding).")
+        logger.info("faiss collection already exists, reusing it")
         return load_vector_store()
 
+    logger.info("No Qdrant Cloud collection found, building one from scratch")
     documents = load_document(file_path)
     chunks = split_into_chunks(documents)
     print(f"Loaded '{file_path}' and split it into {len(chunks)} chunks.")
@@ -38,7 +44,9 @@ def build_vector_store_for_document(file_path: str = config.DATA_FILE_PATH):
     
 def build_hr_assistant(file_path: str = config.DATA_FILE_PATH):
     """Build the full RAG agent, ready to answer questions."""
+    logger.info("Building HR assistant...")
     config.check_api_keys()
+    check_langsmith_tracing()
 
     vector_store = build_vector_store_for_document(file_path)
     retriever = get_retriever(vector_store)
@@ -53,10 +61,12 @@ def build_hr_assistant(file_path: str = config.DATA_FILE_PATH):
 def ask(agent, question: str) -> str:
     """Ask the agent a question and
     return its final answer as plain text."""
+    logger.info("User question: %s", question)
    
     response = agent.invoke({"messages": [{"role": "user", "content": question}]})
 
     final_msg = response["messages"][-1]
+    logger.info("Final answer: %s", final_msg.content)
 
     if isinstance(final_msg.content,list):
         return final_msg.content[0]["text"]

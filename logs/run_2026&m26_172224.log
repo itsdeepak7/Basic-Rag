@@ -1,0 +1,17 @@
+2026-08-26 17:22:26,344 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-08-26 17:22:26,348 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-08-26 17:22:26,351 | INFO | hr_assistant.pipeline | faiss collection already exists, reusing it
+2026-08-26 17:22:26,351 | INFO | hr_assistant.vector_stores | loading faiss index from 'data\faiss_index'
+2026-08-26 17:22:26,351 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-08-26 17:22:26,355 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-26 17:22:26,357 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-26 17:22:26,357 | INFO | faiss.loader | Loading faiss.
+2026-08-26 17:22:26,398 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-26 17:22:26,413 | INFO | hr_assistant.vector_stores | Creating retreival with top_k='3;
+2026-08-26 17:22:26,415 | INFO | hr_assistant.llm | chat model attached 'gemini-3.6-flash'
+2026-08-26 17:22:28,448 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-08-26 17:22:28,465 | INFO | hr_assistant.agents | HR AGENT READY
+2026-08-26 17:22:35,144 | INFO | hr_assistant.pipeline | User question: HI 
+2026-08-26 17:22:38,777 | INFO | httpx | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-26 17:22:38,843 | INFO | hr_assistant.pipeline | Final answer: [{'type': 'text', 'text': 'Hello! I am your HR Assistant. How can I help you today? Feel free to ask me anything about leaves, work from home, probation, notice period, reimbursements, holidays, code of conduct, or exit policies!', 'extras': {'signature': 'Ep0FCpoFARFNMg+qChqKn/hxXEDLgwcnvWNF+PZOCKlzxolAW58NFhs+qAEBzvsGpT4n+Q+OUEl7xBUFCDIBtlMoiQnenPihKIA1WL4aBMFd1e9E5Ala9yR+wHT4taXuCwIyWJIcbjzhbLcmYLe2keNin/HynMmH5VHucMy3Y7s1XBdS+10HU+vlkrArpEBEBlcUakLZhfZFN/V57Pi0b+GTiBO3Fn3FY0n4EjeNAYV7SrinzRM3w+ZnAE0JBtegWGe8Cr4K1ouR72d0/kc9pzacmnpzFG46gu29UyiwvuAUvLMtdKtqYWuoHADHX8BNmkdE1h8IPhf4or6SdYe3Ga/wRpuvQ+aPTzxAuJk8iS7mMSkg/rjatw7G3fQDMpVX8W8RFXFB5cH1D/+1WbF63zWZUsUUCYWQiEmfEaWPL3FQ7rYff9Id5qLoW7l5psWgEknNdtdWYIpmrBtKMJ/xGflniW7QyUSvM0Do8TiDk6S2vFs6fweeTDJ/DJTYpG7+h+sIpBRJfRYhVCnjUTNUshKLurBvODhaO3CpVSGVzrqz9HUn82iu1Y/mJh0gnK7WyFJxmKh1kRar/OoLfh/iCRHPP4LKmPsC74Yb/4tn9AxUG5fgyVOuktgCo6t4W55DGpKydX2cholFkgRfJ0HTuhqdmlpe/LZoXoezlTTfBih5yKbnc6tSCZmoAAhaf/VMssx9RzshAUIn/4WofCrxMjK8Izjkl8wpbsCvWLpE1H15PhWcOIokbC1ThJ6W+qSWzsf8kchylOQ6C/f4z+tq6jy3bgx9yIf30FUh6Vc0jvKO8BGfgbD+159BYd7Efne2NeBAZuLM0/vUdOYsIoDq4V9kOS46Zx50QtQp30VohqVsR051zqMQ8WXMglitShUF'}}]

@@ -1,0 +1,17 @@
+2026-08-26 17:10:20,301 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-08-26 17:10:20,302 | INFO | hr_assistant.tracing | LangSmith tracing is OFF (set LANGSMITH_TRACING=true in .env to enable)
+2026-08-26 17:10:20,303 | INFO | hr_assistant.pipeline | faiss collection already exists, reusing it
+2026-08-26 17:10:20,304 | INFO | hr_assistant.vector_stores | loading faiss index from 'data\faiss_index'
+2026-08-26 17:10:20,304 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-08-26 17:10:20,313 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-26 17:10:20,314 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-26 17:10:20,315 | INFO | faiss.loader | Loading faiss.
+2026-08-26 17:10:21,084 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-26 17:10:21,150 | INFO | hr_assistant.vector_stores | Creating retreival with top_k='3;
+2026-08-26 17:10:21,159 | INFO | hr_assistant.llm | chat model attached 'gemini-3.6-flash'
+2026-08-26 17:10:23,264 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-08-26 17:10:23,349 | INFO | hr_assistant.agents | HR AGENT READY
+2026-08-26 17:12:26,430 | INFO | hr_assistant.pipeline | User question: Hi !
+2026-08-26 17:12:32,362 | INFO | httpx | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-26 17:12:32,393 | INFO | hr_assistant.pipeline | Final answer: content=[{'type': 'text', 'text': 'Hello! How can I help you today? Feel free to ask me anything about our leave policies, work from home guidelines, probation, notice periods, reimbursements, code of conduct, holidays, or exit procedures!', 'extras': {'signature': 'Ev4ECvsEARFNMg/mpSKbB26ohIfsYhUXBarc2YY11R0vTLPRbX2dfyylUp/sufgPQIQM9vP+2/3k4xgBTGI/Lz3iy5WI89oCcrVbcMdQ5/s1J+eSCjVATFNSFi95HrU9jKM0qKKcXu4QQLhb/iHjTEf+ZaN4DMFwVNGA7myy9OQJuS9wqMK8J7Dky9DT4K4BIBnGLYHcAHWflp55dJszYdI0yOkF//7K3H2/i22HBqCcGV3FyLs7Ohx/QOkiZUYEef3k8LlYDZ+bqEUjozIawV4sFvcv5rfD5lbJavycgKqdT0a2XH+9eXYRdtXJrogVuqLKbPfZwgTWY6XN/AI9m0y01SvC08Pl9qhOr48lYvOntDyLbACJYfD9q3nGTRqlclFpybTxQpvo1RURLbaTw4VLSdyK/lOkojIKIzZykBDuqwpQGqpx+vK1wtUsPbpLeCLxrJzdcYbmtmDVl8piJu8MPdmnuH3grul7xVygq6rwn6+/op5ikqbVOTpqu5r3XjoIVjj8MkATtSO48gaMkNwgTln3180hZogfC3HKt0D1tnJFD3vhOfLIXUmb9nvfCplgArcf4ZcdZZ5eMP2wqa7uEMU8y993HFea+VWWPZnALEaojnH00UO5fxfnKu3QEAh4s7iOZtmxE01ZpX30f0LrZy+rk1eYMCzSbQw+nMhhVDL4t7uQB65n/y/aLuP4WfBRT5+xsrKDbpH2uXz9danejMTXdLsON4azf2qoRvjnZ2hr5m8hN0szi2NVeQGLTfE3bDo2H+7EaGmOFAoWTi/wcMu8dBfE9W+rYkNt2iN/U+A2l+0LBPTtBjNayGYtqt/44FHJkfHp3aCd0vHCW24='}}] additional_kwargs={} response_metadata={'finish_reason': 'STOP', 'model_name': 'gemini-3.6-flash', 'safety_ratings': [], 'model_provider': 'google_genai'} id='lc_run--01a03de0-eec1-7aa2-90c3-995331449ca9-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 119, 'output_tokens': 165, 'total_tokens': 284, 'input_token_details': {'cache_read': 0}, 'output_token_details': {'reasoning': 122}}
