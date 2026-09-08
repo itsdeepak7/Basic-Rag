@@ -18,6 +18,7 @@ from hr_assistant.vector_stores import (
     vector_store_exists,
 )
 
+from hr_assistant.guardrails import REFUSAL_MESSAGE,check_input,check_output
 from hr_assistant.tracing import check_langsmith_tracing
 
 from hr_assistant.logger import get_logger
@@ -62,14 +63,19 @@ def ask(agent, question: str) -> str:
     """Ask the agent a question and
     return its final answer as plain text."""
     logger.info("User question: %s", question)
+
+    input_is_safe = check_input(question)
+    if not input_is_safe:
+        return REFUSAL_MESSAGE
    
     response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+    final_msg = response["messages"][-1].content
+    logger.info("Final answer: %s", final_msg)
 
-    final_msg = response["messages"][-1]
-    logger.info("Final answer: %s", final_msg.content)
+    output_is_safe = check_output(final_msg)
+    if not output_is_safe:
+        return REFUSAL_MESSAGE
 
-    if isinstance(final_msg.content,list):
-        return final_msg.content[0]["text"]
-    
-    return final_msg.content
+
+    return final_msg
 

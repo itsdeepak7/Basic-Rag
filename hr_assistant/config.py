@@ -30,6 +30,9 @@ VECTOR_STORE_PATH = os.path.join("data","faiss_index")
 LLM_MODEL_NAME = "gemini-3.6-flash"
 ##"openai/gpt-oss-20b"
 
+#GUARD MODEL
+GUARD_MODEL_NAME = "openai/gpt-oss-safeguard-20b"
+
 EMBEDDINGS_MODEL_NAME = "jina-embeddings-v2-base-en"
 
 #CHUNK / TEXT SPLITTER CONFIG 
