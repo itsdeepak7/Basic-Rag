@@ -1,0 +1,14 @@
+2026-09-09 23:13:36,978 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-09 23:13:36,980 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-09-09 23:13:38,209 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-09-09 23:13:38,213 | INFO | hr_assistant.pipeline | No Qdrant Cloud collection found, building one from scratch
+2026-09-09 23:13:38,213 | INFO | hr_assistant.document_loader | Loading document from 'data\hr_policy.txt'
+2026-09-09 23:13:38,215 | INFO | hr_assistant.document_loader | Loaded 1 document(s)
+2026-09-09 23:13:38,416 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-09 23:21:32,796 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-09 23:21:32,796 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-09-09 23:21:33,959 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-09-09 23:21:33,959 | INFO | hr_assistant.pipeline | No Qdrant Cloud collection found, building one from scratch
+2026-09-09 23:21:33,959 | INFO | hr_assistant.document_loader | Loading document from 'data\hr_policy.txt'
+2026-09-09 23:21:33,963 | INFO | hr_assistant.document_loader | Loaded 1 document(s)
+2026-09-09 23:21:34,166 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
