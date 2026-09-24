@@ -17,4 +17,15 @@ def get_embeddings_model():
     reads JINA_API_KEY from its environment.
     """
     logger.info("initialising embeddings model '%s'",config.EMBEDDINGS_MODEL_NAME)
-    return JinaEmbeddings(model_name = config.EMBEDDINGS_MODEL_NAME,)
+    return JinaEmbeddings(
+        model_name=config.EMBEDDINGS_MODEL_NAME)
+   
+def get_embeddings_model():
+    """Returns a Jina embedding model using explicit configuration."""
+
+    api_key = config.JINA_API_KEY
+    logger.info("Initializing embeddings model '%s'", config.EMBEDDINGS_MODEL_NAME)
+    
+    return JinaEmbeddings(
+        model_name=config.EMBEDDINGS_MODEL_NAME,
+        jina_api_key=api_key,)

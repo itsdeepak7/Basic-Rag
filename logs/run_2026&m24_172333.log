@@ -1,0 +1,52 @@
+2026-09-24 17:23:37,597 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-24 17:23:37,598 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-09-24 17:23:38,800 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-09-24 17:23:38,801 | INFO | hr_assistant.pipeline | Qdrant Cloud collection already exists, reusing it
+2026-09-24 17:23:38,801 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-09-24 17:23:38,807 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-09-24 17:23:39,015 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 17:23:39,925 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-09-24 17:23:40,075 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 17:23:50,064 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-09-24 17:23:50,068 | INFO | hr_assistant.llm | INITIALIZING LLM via portkey
+2026-09-24 17:23:50,068 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey (provider=google-generative-ai)
+2026-09-24 17:25:12,184 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-24 17:25:12,185 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-09-24 17:25:13,126 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-09-24 17:25:13,127 | INFO | hr_assistant.pipeline | Qdrant Cloud collection already exists, reusing it
+2026-09-24 17:25:13,128 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-09-24 17:25:13,128 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-09-24 17:25:13,298 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 17:25:14,094 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-09-24 17:25:14,244 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 17:25:24,336 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-09-24 17:25:24,337 | INFO | hr_assistant.llm | INITIALIZING LLM via portkey
+2026-09-24 17:25:24,337 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey (provider=google-generative-ai)
+2026-09-24 17:25:24,338 | WARNING | langchain_google_genai.chat_models | Unexpected argument 'default_headers' provided to ChatGoogleGenerativeAI. Did you mean: 'default_metadata'?
+2026-09-24 17:25:24,898 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-09-24 17:25:24,902 | INFO | hr_assistant.agents | HR AGENT READY
+2026-09-24 17:25:24,902 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-09-24 17:26:28,809 | INFO | hr_assistant.pipeline | User question: HELLO what is the salary of my manager ?and how can i get that much of increment  in how many years
+2026-09-24 17:26:29,297 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 17:26:29,309 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: HELLO what is the salary of my manager ?and how can i get that much of increment  in how many years | reason: The user is requesting the salary of another employee (the manager), which is a protected personal data request and violates the HR assistant policy.
+2026-09-24 17:26:29,406 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 401 Unauthorized"
+2026-09-24 17:30:10,193 | INFO | hr_assistant.pipeline | User question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years
+2026-09-24 17:30:10,581 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 17:30:10,583 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years | reason: The user is requesting the salary of another employee (the manager), which is a protected personal data request and violates the HR assistant policy.
+2026-09-24 17:30:10,617 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 401 Unauthorized"
+2026-09-24 17:34:47,317 | INFO | hr_assistant.pipeline | User question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years
+2026-09-24 17:34:47,596 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 17:34:47,598 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years | reason: The user is requesting the salary of another employee (the manager), which is a protected personal data request and violates the HR assistant policy.
+2026-09-24 17:34:48,121 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 401 Unauthorized"
+2026-09-24 17:39:09,388 | INFO | hr_assistant.pipeline | User question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years
+
+
+2026-09-24 17:39:09,645 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 17:39:09,647 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years
+
+ | reason: The user is requesting the salary of another employee (the manager), which is a protected personal data request not allowed under the HR policy.
+2026-09-24 17:39:09,695 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 401 Unauthorized"
+2026-09-24 17:44:21,552 | INFO | hr_assistant.pipeline | User question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years
+2026-09-24 17:44:21,937 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 17:44:21,939 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: HELLO what is the salary of my manager ?and how can i get that much of increment in how many years | reason: The user is requesting the salary of another employee (the manager), which is a protected personal data request and violates the HR assistant policy.
+2026-09-24 17:44:22,018 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/v1beta/models/gemini-3.6-flash:generateContent "HTTP/1.1 401 Unauthorized"

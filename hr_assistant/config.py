@@ -8,6 +8,11 @@ load_dotenv()
 ##ENV VAR / SECRET
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 JINA_API_KEY = os.getenv("JINA_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+#GATEWAY
+PORTKEY_API_KEY =os.getenv("PORTKEY_API_KEY")
+PORTKEY_CONFIG_SLUG = os.getenv("PORTKEY_CONFIG_SLUG")
 
 DATA_FILE_PATH = os.path.join("data","hr_policy.txt")
 

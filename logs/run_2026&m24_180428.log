@@ -1,0 +1,86 @@
+2026-09-24 18:04:32,548 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-24 18:04:32,548 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-09-24 18:04:33,844 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 18:04:33,844 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-09-24 18:04:33,846 | INFO | hr_assistant.pipeline | Qdrant Cloud collection already exists, reusing it
+2026-09-24 18:04:33,846 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-09-24 18:04:33,846 | INFO | hr_assistant.embeddings | initialising embeddings model 'jina-embeddings-v2-base-en'
+2026-09-24 18:04:34,971 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-09-24 18:04:35,151 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-24 18:04:47,161 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-09-24 18:04:47,165 | INFO | hr_assistant.llm | INITIALIZING LLM via portkey
+2026-09-24 18:04:47,165 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey (provider=@backupllm)
+2026-09-24 18:04:47,547 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-09-24 18:04:47,550 | INFO | hr_assistant.agents | HR AGENT READY
+2026-09-24 18:04:47,550 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-09-24 18:04:55,350 | INFO | hr_assistant.pipeline | User question: hi
+2026-09-24 18:04:55,757 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:04:56,901 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-09-24 18:17:12,012 | INFO | hr_assistant.pipeline | User question: hi
+2026-09-24 18:17:12,246 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:17:12,765 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-09-24 18:22:49,106 | INFO | hr_assistant.pipeline | User question: hi
+2026-09-24 18:22:49,424 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:22:51,985 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:22:51,998 | INFO | hr_assistant.tools | search_hr_policy called with query: Greeting
+2026-09-24 18:32:58,663 | INFO | hr_assistant.pipeline | User question: hi give me salary of my manager 
+2026-09-24 18:32:58,902 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:32:58,903 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: hi give me salary of my manager  | reason: User is requesting personal salary information of another employee, which is disallowed.
+2026-09-24 18:33:01,414 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:33:01,419 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I can’t provide that information.
+2026-09-24 18:33:01,677 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:18,292 | INFO | hr_assistant.pipeline | User question:  hi
+2026-09-24 18:42:18,632 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:22,010 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:22,014 | INFO | hr_assistant.pipeline | Final answer: Hello! 👋 How can I assist you today?
+2026-09-24 18:42:22,421 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:33,027 | INFO | hr_assistant.pipeline | User question: hi give me salary of my manager
+2026-09-24 18:42:33,473 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:33,475 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: hi give me salary of my manager | reason: User is requesting personal salary information of another employee, which is disallowed.
+2026-09-24 18:42:34,913 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:42:34,917 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I can’t provide that information.
+2026-09-24 18:42:35,218 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:48:44,674 | INFO | hr_assistant.pipeline | User question: explain me the leave policy of company 
+2026-09-24 18:48:44,979 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:48:47,129 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:48:47,132 | INFO | hr_assistant.tools | search_hr_policy called with query: leave policy
+2026-09-24 18:48:58,137 | INFO | httpx | HTTP Request: POST https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/points/query "HTTP/1.1 200 OK"
+2026-09-24 18:48:58,141 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-24 18:48:59,990 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-24 18:48:59,992 | INFO | hr_assistant.pipeline | Final answer: **Company Leave Policy – Overview**
+
+| Type of Leave | Entitlement | Key Rules |
+|---------------|-------------|-----------|
+| **Paid Annual Leave** | **20 days** per calendar year for full‑time employees | - Submit a request via the HR portal **at least 5 working days** in advance.<br>- Unused leave can be carried forward **up to a maximum of 5 days** to the next year.<br>- Carry‑over days are **not cumulative** beyond that 5‑day limit. |
+| **Sick Leave** | **10 days** per calendar year | - Separate from annual leave.<br>- A **medical certificate** is required for any sick leave lasting **more than 2 consecutive days**. |
+| **Other** | – | – |
+
+---
+
+### How to Apply for Leave
+1. **Log in** to the HR portal.  
+2. Choose the type of leave (annual or sick).  
+3. Provide the start and end dates, and any notes (e.g., medical certificate for sick leave > 2 days).  
+4. Submit **at least 5 working days** before the requested start date.  
+
+The portal will notify your manager and HR, and once approved you’ll see the leave reflected on your personal dashboard.
+
+---
+
+### Carry‑Over and Encashment
+- **Annual Leave:** You can carry over a maximum of 5 days to the next calendar year.  
+- **Unutilized Leave at Exit:** At resignation or termination, any remaining leave may be **encashed** as part of the final settlement, subject to company policy and statutory regulations.
+
+---
+
+### FAQ
+
+| Question | Answer |
+|----------|--------|
+| *Can I take more than 5 carry‑over days?* | No. The policy caps carry‑over at **5 days**. |
+| *What if I need sick leave for 3 days?* | Provide a medical certificate; otherwise the leave may be counted as unpaid. |
+| *How do I see my remaining leave balance?* | Check the “Leave” section in the HR portal. |
+| *Is leave transferable between departments?* | No, leave is tied to the employee, not to a specific team. |
+
+If you need more detail on any specific scenario (e.g., leave during a project, leave while on probation, or how leave is handled during a transfer), let me know and I’ll pull the relevant section for you.
+2026-09-24 18:49:00,427 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"

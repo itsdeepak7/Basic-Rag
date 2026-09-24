@@ -26,3 +26,11 @@ ipykernel
 # web app 
 
 streamlit
+
+#LLM GATEWAY
+
+portkey-ai
+langchain-openai
+
+#every gateway  --- gives you an openai compatibale code 
+

@@ -38,5 +38,5 @@ if question:
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             answer = ask(agent, question)
-        st.markdown(answer[0]['text'])
+        st.markdown(answer)
     st.session_state.messages.append({"role": "assistant", "content": answer})
