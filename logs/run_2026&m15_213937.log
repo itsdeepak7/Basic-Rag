@@ -1,0 +1,2 @@
+2026-10-15 21:39:37,510 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey Gateway with fallback strategy
+2026-10-15 21:39:38,813 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"

@@ -8,6 +8,8 @@ the Portkey dashboard) - our code never sees the raw Groq key.
 import json
 from langchain_openai import ChatOpenAI
 from portkey_ai import PORTKEY_GATEWAY_URL,createHeaders
+from langchain_groq import ChatGroq
+from hr_assistant.config import PORTKEY_CONFIG_SLUG
 
 
 from hr_assistant import config
@@ -19,6 +21,7 @@ logger = get_logger(__name__)
 # The one Groq integration set up in the Portkey dashboard for this
 # workspace (see module docstring for why there's only one).
 PRIMARY_PROVIDER = "@backupllm"
+JUDGE_PROVIDER = "@judge"
 
 PRIMARY_TARGET = {'provider':"@backupllm",
                   "override_params":{"model":config.LLM_MODEL_NAME}}
@@ -62,12 +65,29 @@ def get_gateway_llm() -> ChatOpenAI:
     # createHeaders accepts a dictionary object directly for the config parameter
     headers = createHeaders(
         api_key=config.PORTKEY_API_KEY.strip(),
-        config=GATEWAY_CONFIG
+        config=PORTKEY_CONFIG_SLUG
     )
 
     return ChatOpenAI(
         model=config.LLM_MODEL_NAME,
         api_key=config.PORTKEY_API_KEY.strip(),
+        base_url=PORTKEY_GATEWAY_URL,
+        default_headers=headers,
+    )
+
+
+def get_judge_llm() ->ChatOpenAI:
+    """Return a judge model routed through Portkey, same slug as the main app."""
+    logger.info("Routing Judge LLM calls through Portkey Gateway with fallback strategy")
+
+    headers = createHeaders(
+        api_key=config.PORTKEY_API_KEY.strip(),
+        virtual_key=JUDGE_PROVIDER
+    )
+
+    return ChatOpenAI(
+        model=config.JUDGE_MODEL_NAME,
+        api_key="portkey",
         base_url=PORTKEY_GATEWAY_URL,
         default_headers=headers,
     )

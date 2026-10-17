@@ -35,7 +35,7 @@ QDRANT_COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME","hr_policy")
 
 #MODELS
 #LLM AND EMBEDDING MODEL
-LLM_MODEL_NAME = "gemini-3.6-flash"
+LLM_MODEL_NAME = "gemini-3.5-flash"
 ##"openai/gpt-oss-20b"
 
 #GUARD MODEL

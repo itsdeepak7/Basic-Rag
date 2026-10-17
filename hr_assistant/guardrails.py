@@ -143,7 +143,3 @@ def check_output(answer: str) -> tuple[bool, str]:
     if not is_safe:
         logger.warning("Output guard BLOCKED answer: %s | reason: %s", answer, reason)
     return is_safe, reason
-
-
-
-

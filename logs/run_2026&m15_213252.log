@@ -1,0 +1,1598 @@
+2026-10-15 21:32:55,281 | INFO | hr_assistant.evaluation | Dataset 'hr-policy-qna' already exists, reusing it
+2026-10-15 21:32:55,605 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-10-15 21:32:55,605 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-10-15 21:32:56,684 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-10-15 21:32:56,686 | INFO | hr_assistant.pipeline | Qdrant Cloud collection already exists, reusing it
+2026-10-15 21:32:56,714 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-10-15 21:32:56,714 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-10-15 21:32:56,974 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 21:32:57,816 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-10-15 21:32:58,059 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 21:32:58,732 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-10-15 21:32:58,738 | INFO | hr_assistant.llm | INITIALIZING LLM via portkey
+2026-10-15 21:32:58,738 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey Gateway with fallback strategy
+2026-10-15 21:32:59,449 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-10-15 21:32:59,453 | INFO | hr_assistant.agents | HR AGENT READY
+2026-10-15 21:32:59,453 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-10-15 21:32:59,453 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-10-15 21:32:59,453 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-10-15 21:33:00,683 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-10-15 21:33:00,894 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 21:33:01,551 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-10-15 21:33:02,430 | INFO | hr_assistant.evaluation | Running evaluation against dataset 'hr-policy-qna'
+2026-10-15 21:33:04,673 | INFO | hr_assistant.pipeline | User question: How many days of unused annual leave can be carried forward?
+2026-10-15 21:33:04,979 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:33:05,385 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:33:05,440 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id 'fb52491a-5fc3-5929-a5f7-8664539d2083'
+2026-10-15 21:33:06,000 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:33:06,025 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404d-8537-7522-b3f2-4ba1be3b8caa: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:33:06,029 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404d-8537-7522-b3f2-4ba1be3b8caa: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:33:06,029 | INFO | hr_assistant.pipeline | User question: How many days per week can I work from home?
+2026-10-15 21:33:06,307 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:33:06,332 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:33:06,338 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '2d797cff-81cb-76b7-7e54-43cb6d371a9c'
+2026-10-15 21:33:06,714 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:33:06,727 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404d-8aad-72c3-8439-48fb688c880b: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:33:06,731 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404d-8aad-72c3-8439-48fb688c880b: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:33:06,735 | INFO | hr_assistant.pipeline | User question: Within how many days is full and final settlement processed after the last working day?
+2026-10-15 21:33:07,012 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:33:07,037 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:33:07,042 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id 'e31fa13d-81d1-dbdd-f652-249a3c768c37'
+2026-10-15 21:33:07,435 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:33:07,443 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404d-8d6e-74c1-9f41-a2792eb61c90: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:33:07,448 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404d-8d6e-74c1-9f41-a2792eb61c90: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:33:07,456 | INFO | hr_assistant.pipeline | User question: How long is the probation period?
+2026-10-15 21:33:07,534 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:33:07,534 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:33:28,016 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:33:28,057 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:33:28,063 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '74937f6b-adc0-935e-85ca-a2ecc66e4a91'
+2026-10-15 21:33:28,427 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:33:28,436 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404d-9040-7593-abc4-dd7594d23ba3: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:33:28,440 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404d-9040-7593-abc4-dd7594d23ba3: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:33:28,440 | INFO | hr_assistant.pipeline | User question: Within how many days must reimbursement claims be submitted?
+2026-10-15 21:33:28,528 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:33:28,528 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:33:48,906 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:33:48,969 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:33:48,980 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id 'e974c898-8b28-200b-4fa9-b29afd873ec2'
+2026-10-15 21:33:49,315 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:33:49,321 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404d-e238-7ad2-b174-44310f54fee1: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:33:49,325 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404d-e238-7ad2-b174-44310f54fee1: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:33:49,325 | INFO | hr_assistant.pipeline | User question: What is the notice period during probation?
+2026-10-15 21:33:49,415 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:33:49,415 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:34:09,590 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:34:09,590 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 4.000000 seconds
+2026-10-15 21:34:13,892 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:34:14,299 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:34:14,311 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '85f481cd-5a72-045b-0885-59165004c912'
+2026-10-15 21:34:14,917 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:34:14,925 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404e-33cd-7ef3-b643-faf7e31579db: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:34:14,927 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404e-33cd-7ef3-b643-faf7e31579db: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:34:14,929 | INFO | hr_assistant.pipeline | User question: How many public holidays does the company observe each year?
+2026-10-15 21:34:15,017 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:34:15,017 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:34:35,497 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:34:35,556 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:34:35,584 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '5098dd8e-a21e-e603-12b9-255c00b31cf8'
+2026-10-15 21:34:35,961 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:34:35,968 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404e-97d1-7061-9a2e-5f17a7ccc477: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:34:35,972 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404e-97d1-7061-9a2e-5f17a7ccc477: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:34:35,975 | INFO | hr_assistant.pipeline | User question: How many paid sick days do I get per year?
+2026-10-15 21:34:36,113 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:34:36,115 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:34:56,592 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:34:56,645 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:34:56,651 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '2c87cd59-def4-6f6e-671c-cfe41aeea22b'
+2026-10-15 21:34:56,998 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:34:57,002 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404e-ea07-7d70-9c23-7d704823a824: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:34:57,007 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404e-ea07-7d70-9c23-7d704823a824: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:34:57,007 | INFO | hr_assistant.pipeline | User question: What is the standard notice period for resignation?
+2026-10-15 21:34:57,103 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:34:57,103 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:35:17,483 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:35:17,893 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:35:17,904 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id '9df90eb9-29f4-4e1b-2720-c293c3cef36e'
+2026-10-15 21:35:18,497 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:35:18,501 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404f-3c2f-73a0-bfc3-94262d851fd0: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:35:18,503 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404f-3c2f-73a0-bfc3-94262d851fd0: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+2026-10-15 21:35:18,505 | INFO | hr_assistant.pipeline | User question: How many days of paid annual leave do I get per year?
+2026-10-15 21:35:18,607 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 21:35:18,607 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 21:35:38,959 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 21:35:39,027 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-10-15 21:35:39,036 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1904, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1308, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openai\_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 71, in ask
+    response = agent.invoke({"messages": [{"role": "user", "content": question}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1483, in model_node
+    model_response = _execute_model_sync(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain\agents\factory.py", line 1454, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 1907, in _generate
+    _handle_openai_bad_request(e)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 644, in _handle_openai_bad_request
+    raise OpenAIInvalidRequestError(
+langchain_openai.chat_models.base.OpenAIInvalidRequestError: Error code: 400 - {'status': 'failure', 'error': {'code': 'inline_config_blocked', 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead.", 'field': 'x-portkey-config'}, 'message': "Inline config is not allowed when block_inline_config is enabled. Reference a saved config by its 'pc-...' slug instead."}
+During task with name 'model' and id 'f38ac112-7d17-9edc-7134-4b4f7d06b4bd'
+2026-10-15 21:35:39,397 | INFO | httpx | HTTP Request: POST https://api.portkey.ai/v1/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-15 21:35:39,406 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator _wrapped_evaluator> on run 01a1404f-9029-7973-b369-183bd1a01615: NotFoundError("Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}")
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\openevals\llm.py", line 268, in get_score
+    response = judge_with_structured_output.invoke(normalized_messages)  # type: ignore
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3454, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\runnables\base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'Unknown request URL: POST /openai/v1/openai/v1/chat/completions. Please check the URL for typos, or see the docs at https://console.groq.com/docs/', 'type': 'invalid_request_error', 'code': 'unknown_url'}}
+2026-10-15 21:35:39,409 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a1404f-9029-7973-b369-183bd1a01615: KeyError('answer')
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+             ^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 140, in groundedness_evaluator
+    return groundedness_judge(outputs={"answer": outputs["answer"]}, context=outputs["context"])
+                                                 ~~~~~~~^^^^^^^^^^
+KeyError: 'answer'

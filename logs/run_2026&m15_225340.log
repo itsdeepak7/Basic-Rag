@@ -1,0 +1,401 @@
+2026-10-15 22:53:43,304 | INFO | hr_assistant.evaluation | Dataset 'hr-policy-qna' already exists, reusing it
+2026-10-15 22:53:43,669 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-10-15 22:53:43,669 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
+2026-10-15 22:53:44,624 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/exists "HTTP/1.1 200 OK"
+2026-10-15 22:53:44,625 | INFO | hr_assistant.pipeline | Qdrant Cloud collection already exists, reusing it
+2026-10-15 22:53:44,628 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-10-15 22:53:44,628 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-10-15 22:53:44,810 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 22:53:45,746 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-10-15 22:53:45,937 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 22:53:46,486 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-10-15 22:53:46,490 | INFO | hr_assistant.llm | INITIALIZING LLM via portkey
+2026-10-15 22:53:46,490 | INFO | hr_assistant.gateway | Routing LLM calls through Portkey Gateway with fallback strategy
+2026-10-15 22:53:47,231 | INFO | hr_assistant.agents | Creating HR agent with 1 tool(s)
+2026-10-15 22:53:47,235 | INFO | hr_assistant.agents | HR AGENT READY
+2026-10-15 22:53:47,235 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-10-15 22:53:47,235 | INFO | hr_assistant.vector_stores | Connecting to existing Qdrant collection 'hr_policy'
+2026-10-15 22:53:47,235 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-10-15 22:53:48,151 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy "HTTP/1.1 200 OK"
+2026-10-15 22:53:48,339 | INFO | httpx | HTTP Request: GET https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-10-15 22:53:48,919 | INFO | hr_assistant.vector_stores | Creating retriever with top_k=3
+2026-10-15 22:53:48,921 | INFO | hr_assistant.evaluation | Running evaluation against dataset 'hr-policy-qna'
+2026-10-15 22:53:50,922 | INFO | hr_assistant.pipeline | User question: How many days of unused annual leave can be carried forward?
+2026-10-15 22:53:51,057 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:53:51,065 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2633, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2633, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:53:52,595 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:52,611 | INFO | hr_assistant.pipeline | User question: How many days per week can I work from home?
+2026-10-15 22:53:52,695 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:53:52,698 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2632, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2632, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:53:53,620 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:53,625 | INFO | hr_assistant.pipeline | User question: Within how many days is full and final settlement processed after the last working day?
+2026-10-15 22:53:53,678 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:53:53,681 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3339, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3339, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:53:54,710 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:54,716 | INFO | hr_assistant.pipeline | User question: How long is the probation period?
+2026-10-15 22:53:54,842 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:53:54,844 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2628, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2628, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:53:55,903 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:55,907 | INFO | hr_assistant.pipeline | User question: Within how many days must reimbursement claims be submitted?
+2026-10-15 22:53:55,952 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:53:55,955 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3333, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3333, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:53:56,930 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:56,936 | INFO | hr_assistant.pipeline | User question: What is the notice period during probation?
+2026-10-15 22:53:57,209 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:57,990 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:57,996 | INFO | hr_assistant.tools | search_hr_policy called with query: What is the notice period during probation?
+2026-10-15 22:53:59,348 | INFO | httpx | HTTP Request: POST https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/points/query "HTTP/1.1 200 OK"
+2026-10-15 22:53:59,351 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-10-15 22:53:59,718 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:53:59,720 | INFO | hr_assistant.pipeline | Final answer: During the probation period, the notice period is **15 days**.
+2026-10-15 22:54:00,055 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:02,209 | INFO | httpx | HTTP Request: POST https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/points/query "HTTP/1.1 200 OK"
+2026-10-15 22:54:03,841 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:06,608 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:06,616 | INFO | hr_assistant.pipeline | User question: How many public holidays does the company observe each year?
+2026-10-15 22:54:07,133 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:54:07,137 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3334, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 3334, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:54:08,263 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:08,267 | INFO | hr_assistant.pipeline | User question: How many paid sick days do I get per year?
+2026-10-15 22:54:08,402 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:54:08,406 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2632, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2632, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:54:09,586 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:09,591 | INFO | hr_assistant.pipeline | User question: What is the standard notice period for resignation?
+2026-10-15 22:54:09,894 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:19,621 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:19,626 | INFO | hr_assistant.tools | search_hr_policy called with query: standard notice period for resignation
+2026-10-15 22:54:21,568 | INFO | httpx | HTTP Request: POST https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/points/query "HTTP/1.1 200 OK"
+2026-10-15 22:54:21,569 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-10-15 22:54:32,315 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:32,320 | INFO | hr_assistant.pipeline | Final answer: The standard notice period for resignation is **30 days**.  
+During the probation period, the notice period is reduced to **15 days**.
+2026-10-15 22:54:33,166 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:35,088 | INFO | httpx | HTTP Request: POST https://1c91c5c0-cd61-465e-8015-771b9b9e61d5.ca-central-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy/points/query "HTTP/1.1 200 OK"
+2026-10-15 22:54:36,211 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:37,095 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 22:54:37,098 | INFO | hr_assistant.pipeline | User question: How many days of paid annual leave do I get per year?
+2026-10-15 22:54:37,150 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 22:54:37,150 | INFO | groq._base_client | Retrying request to /openai/v1/chat/completions in 20.000000 seconds
+2026-10-15 22:54:57,717 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-15 22:54:57,719 | ERROR | langsmith.evaluation._runner | Error running target function: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2634, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1999, in _forward
+    fn(*args, langsmith_extra=langsmith_extra)
+  File "C:\Basic-Rag\venv\Lib\site-packages\langsmith\run_helpers.py", line 781, in wrapper
+    function_result = run_container["context"].run(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\evaluation.py", line 120, in target
+    answer = ask(agent, inputs["question"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\pipeline.py", line 67, in ask
+    input_is_safe = check_input(question)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 133, in check_input
+    is_safe, reason = _check_safety(question, INPUT_POLICY)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\hr_assistant\guardrails.py", line 116, in _check_safety
+    response = _guard_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\langchain_groq\chat_models.py", line 627, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Basic-Rag\venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m4mzvvxpe99990y4wxbgqyaw` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2634, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-10-15 22:55:00,787 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"

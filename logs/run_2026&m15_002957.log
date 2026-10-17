@@ -1,0 +1,3 @@
+2026-10-15 00:30:02,017 | INFO | hr_assistant.evaluation | Creating dataset 'hr-policy-qna' with 10 example(s)
+2026-10-15 00:30:03,456 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-10-15 00:30:03,456 | INFO | hr_assistant.tracing | LangSmith tracing ENABLED - project 'HR_POLICY_ASSISTANT', traces at https://smith.langchain.com
