@@ -1,46 +1,180 @@
 # HR Policy Assistant (RAG)
 
-A retrieval-augmented generation (RAG) chatbot that answers employee questions about a company's HR policy document. Built with LangChain, Google-hosted LLMs, Jina embeddings, and a FAISS vector store
+An enterprise-grade Retrieval-Augmented Generation (RAG) assistant designed to help employees query internal HR policies with precision and confidence. Built with LangChain, Groq-hosted LLMs, Jina AI embeddings, and a Qdrant Cloud vector store, the pipeline integrates dedicated safety guardrails and full LangSmith observability.
 
-## How it works
+---
 
-**Ingest** — `hr_assistant/document_loader.py` loads `data/hr_policy.txt`, and `hr_assistant/splitter.py` splits it into chunks (`CHUNK_SIZE=500`, `CHUNK_OVERLAP=60`).
+## Key Features
 
-**Embed & store** — `hr_assistant/embeddings.py` creates embeddings with Jina (`jina-embeddings-v2-base-en`), and `hr_assistant/vector_store.py` uploads/loads them from a FAISS collection (reused on subsequent runs instead of re-embedding).
+- **Agentic Retrieval:** Uses a LangChain tool-calling agent to decide when and how to search the policy store before synthesizing answers.
+- **Persistent Cloud Vector Store:** Managed on Qdrant Cloud with collection reuse, eliminating redundant re-embedding steps across restarts.
+- **Dual-Layer Guardrails:** Independent input screening (prompt injection, cross-employee data requests) and output auditing (PII leakage, unauthorized commitments, malicious links) via a dedicated safety model.
+- **End-to-End Tracing:** LangSmith integration for deep visibility into latency, tool invocations, and agent reasoning paths.
+- **Multiple Entry Points:** Run via interactive Streamlit Web UI, CLI script, or Jupyter Notebook.
 
-**Retrieve** — `hr_assistant/tools.py` wraps the vector store retriever (top-k = 3) as a `search_hr_policy` tool.
+---
 
-**Agent** — `hr_assistant/agent.py` builds a LangChain agent (`gemini-3.6-flash` via google gemini) that calls the search tool to ground its answers.
+## Architecture & How It Works
 
-Everything is wired together in `hr_assistant/pipeline.py` (`build_hr_assistant()` / `ask()`), used by both entry points below.
+```text
+       [ User Query ]
+             │
+             ▼
+    ┌─────────────────┐
+    │ Input Guardrail │ ──► (Blocks prompt injection / data exfiltration)
+    └────────┬────────┘
+             │ Pass
+             ▼
+    ┌─────────────────┐       Calls Tool       ┌──────────────────────┐
+    │ LangChain Agent │ ─────────────────────► │   search_hr_policy   │
+    │ (Groq LLM)      │ ◄───────────────────── │ (Qdrant Cloud, k=3)  │
+    └────────┬────────┘       Top-3 Chunks     └──────────────────────┘
+             │
+             ▼
+    ┌──────────────────┐
+    │ Output Guardrail │ ──► (Blocks PII leaks / unauthorized promises)
+    └────────┬─────────┘
+             │ Safe
+             ▼
+      [ User Answer ]
+```
 
-## Entry points
+1. **Ingest:** `hr_assistant/document_loader.py` reads `data/hr_policy.txt`, and `hr_assistant/splitter.py` chunks the content with `CHUNK_SIZE=500` and `CHUNK_OVERLAP=60`.
+2. **Embed & Store:** `hr_assistant/embeddings.py` generates vectors using `jina-embeddings-v2-base-en`. `hr_assistant/vector_store.py` provisions or reuses existing vectors inside Qdrant Cloud.
+3. **Retrieve:** `hr_assistant/tools.py` exposes a vector retriever tool (`top-k = 3`) to search the HR policy.
+4. **Agent Inference:** `hr_assistant/agent.py` coordinates the agent (`openai/gpt-oss-20b` hosted on Groq) to invoke retrieval and synthesize grounded responses.
+5. **Safety Guardrails:** `hr_assistant/guardrails.py` uses an auxiliary safety model (`openai/gpt-oss-safeguard-20b` on Groq) to evaluate input prompts and filter generated responses.
+6. **Unified Pipeline:** `hr_assistant/pipeline.py` provides high-level helpers (`build_hr_assistant()`, `ask()`) invoked across all entry points.
 
-`python main.py` — CLI demo that asks a few sample HR questions.
+---
 
-`streamlit run app.py` — interactive chat UI.
+## Project Layout
 
-`rag.ipynb` — notebook version for experimentation.
+```text
+hr_assistant/
+├── config.py           # Configuration, environment parsing, and system prompts
+├── document_loader.py  # Loads source policy documents
+├── splitter.py         # Text chunking logic
+├── embeddings.py       # Jina embeddings configuration
+├── vector_store.py     # Qdrant Cloud client, collection initialization, and retriever
+├── tools.py            # Custom retriever tools exposed to the agent
+├── llm.py              # Groq LLM setup
+├── agent.py            # LangChain agent workflow definition
+├── guardrails.py       # Input/output safety verification
+├── pipeline.py         # Main interface connecting components (build_hr_assistant, ask)
+├── logger.py           # File logging system (outputting to logs/)
+└── tracing.py          # LangSmith configuration and connectivity check
 
+data/
+└── hr_policy.txt       # Primary source HR policy document
 
-## Setup
+docs/                   # Technical documentation (logging, LangSmith, migration, security tests)
+NOTES/                  # Background research and reference PDFs
 
-1. Install [uv]:
+main.py                 # CLI demo runner
+app.py                  # Streamlit chat interface
+rag.ipynb               # Prototyping and experimentation notebook
+requirements.txt        # Python package dependencies
+```
+
+---
+
+## Getting Started
+
+### 1. Prerequisites
+
+- Python 3.10+
+- [`uv`](https://github.com/astral-sh/uv) (recommended) or standard `pip`
+
+### 2. Environment Setup
+
+Clone the repository and prepare your virtual environment:
+
+```bash
+# Clone the repository
+git clone https://github.com/itsdeepak7/Basic-Rag.git
+cd Basic-Rag
+
+# Install uv (if not already installed)
 pip install uv
 
-2. Create and activate a virtual environment:
+# Create and activate a virtual environment
 uv venv ragenv
+
+# Windows:
 ragenv\Scripts\activate
 
-3. Install dependencies:
+# macOS / Linux:
+source ragenv/bin/activate
+```
+
+Install dependencies:
+
+```bash
 uv pip install -r requirements.txt
+```
 
-4. Create a `.env` file with:
-GROQ_API_KEY=...
-JINA_API_KEY=...
-GOOGLE_API_KEY=...
+### 3. Environment Variables Configuration
 
-## Git basics
+Create a `.env` file in the root directory:
+
+```env
+# Groq API Configuration
+GROQ_API_KEY=your_groq_api_key_here
+
+# Jina AI Embeddings
+JINA_API_KEY=your_jina_api_key_here
+
+# Qdrant Cloud Configuration
+QDRANT_URL=https://your-cluster-url.qdrant.tech
+QDRANT_API_KEY=your_qdrant_api_key_here
+QDRANT_COLLECTION_NAME=hr_policy
+
+# LangSmith Observability (Optional)
+LANGSMITH_TRACING=false
+LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+LANGSMITH_API_KEY=your_langsmith_api_key_here
+LANGSMITH_PROJECT=hr-policy-assistant
+```
+
+---
+
+## Running the Application
+
+### Interactive Web UI (Streamlit)
+To launch the chat interface:
+```bash
+streamlit run app.py
+```
+
+### Command-Line Interface (CLI)
+To run pre-configured sample questions through the pipeline:
+```bash
+python main.py
+```
+
+### Experimentation Notebook
+Launch Jupyter to explore the notebook version:
+```bash
+jupyter notebook rag.ipynb
+```
+
+---
+
+## Safety & Compliance
+
+The assistant enforces zero-trust data constraints across two checkpoints:
+- **Input Filtering:** Identifies prompt injection patterns, role-breaking instructions, and requests for unauthorized employee records or compensation data.
+- **Output Verification:** Verifies the generated output to block inadvertent disclosures of personally identifiable information (PII), unapproved policy promises, or untrusted URLs.
+
+---
+
+## Git Workflow Reference
+
+Standard commands for pushing ongoing changes:
+
+```bash
 git add .
-git commit -m "Some message"
-git push
+git commit -m "Update HR assistant pipeline"
+git push origin main
+```
